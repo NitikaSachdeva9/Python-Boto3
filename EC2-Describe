@@ -1,0 +1,17 @@
+import sys
+import boto3
+import botocore
+
+region = 'us-east-1'
+
+"""
+Describes the list of EC2 instances in the AWS Account
+"""
+def list_instances():
+    ec2_resource = boto3.resource('ec2', region_name=region)
+    instances = ec2_resource.instances.all()
+    for instance in instances:
+        print('Instance ID: ' + instance.id + '\t\t State: ' + instance.state['Name'])
+    return
+
+list_instances()
